@@ -42,7 +42,9 @@
             />
           </div>
 
-          <button class="btn btn-primary my-2" type="submit">Register</button>
+          <button class="btn btn-primary my-2" type="submit">
+            Register
+          </button>
         </form>
       </div>
     </div>
@@ -50,26 +52,26 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
-import { useRouter } from "vue-router";
+import { reactive } from 'vue';
+import { useRouter } from 'vue-router';
 
-import authApi from "../../api/authApi";
-import axiosClient from "../../api/axiosClient";
+import authApi from '../../api/authApi';
+//import axiosClient from "../../api/axiosClient";
 
 const router = useRouter();
 
 const user = reactive({
-  name: "",
-  email: "",
-  password: "",
-  password_confirmation: "",
+  name: '',
+  email: '',
+  password: '',
+  password_confirmation: '',
 });
 
 const reset_form = () => {
-  user.name = "";
-  user.email = "";
-  user.password = "";
-  user.password_confirmation = "";
+  user.name = '';
+  user.email = '';
+  user.password = '';
+  user.password_confirmation = '';
 };
 
 const register = async () => {
@@ -78,7 +80,7 @@ const register = async () => {
   await authApi.register(user);
   reset_form();
   router.push({
-    name: "Login",
+    name: 'Login',
   });
 };
 </script>

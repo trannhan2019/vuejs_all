@@ -5,7 +5,7 @@
         <h5>Login Form</h5>
       </div>
       <div class="card-body">
-        <form @submit.prevent="handleLogin">
+        <form @submit.prevent="login">
           <div class="form-group">
             <label for="" class="form-label">E-Mail</label>
             <input
@@ -24,7 +24,9 @@
               class="form-control"
             />
           </div>
-          <button class="btn btn-primary my-2" type="submit">Login</button>
+          <button class="btn btn-primary my-2" type="submit">
+            Login
+          </button>
         </form>
       </div>
     </div>
@@ -32,18 +34,21 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
-import { useAuthStore } from "../../stores/auth";
+import { reactive } from 'vue';
+import { useRouter } from 'vue-router';
+import authStore from '@/stores/auth';
 
 const user = reactive({
-  email: "",
-  password: "",
+  email: '',
+  password: '',
 });
 
-//const authStore = useAuthStore();
-const { login } = useAuthStore();
+const router = useRouter();
 
-const handleLogin = async () => {
-  await login(user);
+const login = async () => {
+  await authStore.dispatch('login', user);
+  router.replace({
+    name: 'Dashboard',
+  });
 };
 </script>
